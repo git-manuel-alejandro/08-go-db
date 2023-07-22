@@ -61,3 +61,16 @@ func Crear(cliente modelos.Cliente) {
 	fmt.Println("creado el registro")
 
 }
+
+func Editar(cliente modelos.Cliente, id int) {
+	conectar.Conectar()
+	sql := "update clientes set nombre=?, correo=?, telefono=? where id=?;"
+	result, err := conectar.Db.Exec(sql, cliente.Nombre, cliente.Correo, cliente.Telefono, id)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(result)
+	fmt.Println("actualizado el registro")
+
+}
